@@ -6,12 +6,22 @@ use warnings;
 use Config;
 use File::Path qw(make_path);
 use File::Basename qw(dirname);
+use File::Spec::Functions qw(file_name_is_absolute);
+use Cwd qw(abs_path);
 
 my $perl = $Config{perlpath};
 my $venv = shift || 'venv';
+
+if (!file_name_is_absolute($venv)) {
+    $venv = abs_path . "/$venv";
+}
+
 if (! -d "$venv/bin") {
     make_path "$venv/bin" or die "Unable to create directory '$venv/bin'.\n"
 }
+
+print "perl: $perl\n";
+print "venv: $venv\n";
 
 sub spit {
     open my $fd, '>', shift;
