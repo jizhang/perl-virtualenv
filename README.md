@@ -14,7 +14,7 @@ $ /path/to/perl/bin/virtualenv.pl venv
 $ source venv/bin/activate
 (venv) $ perl -v
 (venv) $ cpanm -v
-(venv) $ source venv/bin/deactivate
+(venv) $ deactivate
 $ perl -v
 ```
 
