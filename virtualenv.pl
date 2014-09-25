@@ -48,6 +48,9 @@ eval \$($perl -Mlocal::lib="$venv")
 export _PV_OLD_PS1=\$PS1
 export PS1="(`basename $venv`)\$PS1"
 
+deactivate() {
+	. $venv/bin/deactivate
+}
 EOS
 
 spit "$venv/bin/deactivate", <<EOS;
@@ -56,6 +59,6 @@ eval \$($perl -Mlocal::lib="--deactivate-all,$venv")
 if [ -n "\$_PV_OLD_PS1" ]; then
     export PS1=\$_PV_OLD_PS1
     unset _PV_OLD_PS1
+    unset deactivate
 fi
-
 EOS
