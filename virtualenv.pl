@@ -35,7 +35,7 @@ exec $perl -Mlocal::lib="$venv" "\$@"
 EOS
 chmod 0755, "$venv/bin/perl";
 
-my $cpanm = dirname($perl) . "/cpanm";
+chomp(my $cpanm = `which cpanm`);
 spit "$venv/bin/cpanm", <<EOS;
 #!/bin/sh
 exec $cpanm --local-lib="$venv" "\$@"
